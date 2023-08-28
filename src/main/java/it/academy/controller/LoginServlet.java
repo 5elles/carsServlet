@@ -1,4 +1,4 @@
-package it.academy;
+package it.academy.controller;
 
 import it.academy.model.entity.User;
 import it.academy.service.LoginService;
@@ -18,21 +18,7 @@ import java.util.stream.Collectors;
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PrintWriter writer = resp.getWriter();
-
-        writer.println("<html>");
-        writer.println("<body>");
-        writer.println("<form action=\"/carsServlet_war/login\" method=\"post\">");
-        writer.println("<label>Login: </label>");
-        writer.println("<input name=\"login\">");
-        writer.println("<br>");
-        writer.println("<label>Password: </label>");
-        writer.println("<input name=\"password\">");
-        writer.println("<br>");
-        writer.println("<input type=\"submit\">");
-        writer.println("</form>");
-        writer.println("</body>");
-        writer.println("</html>");
+        req.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(req, resp);
     }
 
     @Override
@@ -52,13 +38,13 @@ public class LoginServlet extends HttpServlet {
             User user = new User(login, password);
             httpSession.setAttribute("user", user);
 
-            printWriter.printf("User %s is logged in", login);
+            printWriter.printf("User <b>%s</b> is logged in", login);
             printWriter.println("<br>");
-            printWriter.println("<a href=\"/carsServlet_war/cars\">Car brands</a>");
+            printWriter.println("<a href=\"/cars\">List of car brands</a>");
         } else {
             printWriter.println("Try to login again!");
             printWriter.println("<br>");
-            printWriter.println("<a href=\"/carsServlet_war/login\">Login</a>");
+            printWriter.println("<a href=\"/login\">Login</a>");
         }
 
         printWriter.println("</body>");
