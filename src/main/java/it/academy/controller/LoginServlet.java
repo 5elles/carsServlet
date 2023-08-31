@@ -38,9 +38,8 @@ public class LoginServlet extends HttpServlet {
             User user = new User(login, password);
             httpSession.setAttribute("user", user);
 
-            printWriter.printf("User <b>%s</b> is logged in", login);
-            printWriter.println("<br>");
-            printWriter.println("<a href=\"/cars\">List of car brands</a>");
+            resp.sendRedirect("/cars");
+
         } else {
             printWriter.println("Try to login again!");
             printWriter.println("<br>");

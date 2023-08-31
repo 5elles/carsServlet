@@ -26,10 +26,12 @@ public class CarServlet extends HttpServlet {
         writer.println("<dev>");
 
             for (Car car : carList) {
-                String carVin = car.getVin();
-                String carBrand = car.getBrand();
-                String carModel = car.getModel();
-                if (car.getVin().equals(vin)) writer.printf("This is %s. %nModel: %s, vin: %s", carBrand, carModel,  carVin);
+                if (car.getVin().equals(vin)){
+                    String carVin = car.getVin();
+                    String carBrand = car.getBrand();
+                    String carModel = car.getModel();
+                    writer.printf("This is %s. %nModel: %s, vin: %s", carBrand, carModel, carVin);
+                }
             }
 
         writer.println("</dev>");
